@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PAC_UF2_FragaAdrian</string>
+    <string name="main_text" translatable="false">Bienvenid@ a mi primera app</string>
+    <string name="logging_buttom" translatable="false">IDENTIFÍCATE!</string>
+    <string name="register_buttom" translatable="false">REGÍSTRATE!</string>
+</resources>
