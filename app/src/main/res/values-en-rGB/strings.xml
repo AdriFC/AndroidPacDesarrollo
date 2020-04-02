@@ -4,4 +4,11 @@
     <string name="main_text">Welcome to my first app</string>
     <string name="logging_buttom">Logging</string>
     <string name="register_buttom">Register</string>
+    <string name="register_text">Registration screen!</string>
+    <string name="register_toast">you clicked register!</string>
+    <string name="name_user" translatable="false">Name</string>
+    <string name="lastName_user" translatable="false">Last name</string>
+    <string name="user_name">User name</string>
+    <string name="password_user">Password</string>
+    <string name="email_user">Email</string>
 </resources>
