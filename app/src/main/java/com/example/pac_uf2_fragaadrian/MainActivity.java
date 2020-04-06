@@ -9,24 +9,22 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonRegister;
+    Button buttonRegister;  //Botón para acceder al activity de registro
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonRegister = findViewById(R.id.register_button);
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        buttonRegister = findViewById(R.id.register_button);    //Asocia el objecto botón con el botón del layout
+        buttonRegister.setOnClickListener(new View.OnClickListener() {  //Asocio función register al listener del botón
             @Override
             public void onClick(View v) {
                 funcionRegister (v);
             }
         });
     }
-    public void funcionRegister (View v){
+    public void funcionRegister (View v){   //Función que se ejecuta al pulsar el botón de registro
         Toast.makeText(this,getString(R.string.register_toast),Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent (MainActivity.this, RegisterActivity.class);
-        startActivity(intent);
-
+        startActivity(new Intent (MainActivity.this, RegisterActivity.class));
     }
 }

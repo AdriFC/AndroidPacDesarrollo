@@ -11,4 +11,6 @@
     <string name="user_name">User name</string>
     <string name="password_user">Password</string>
     <string name="email_user">Email</string>
+    <string name="registrame_ya">Register me now!</string>
+    <string name="login_text">Login screen \\n log in!</string>
 </resources>

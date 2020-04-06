@@ -11,4 +11,6 @@
     <string name="user_name">Nombre usuario</string>
     <string name="password_user">Contraseña</string>
     <string name="email_user">Correo electrónico</string>
+    <string name="registrame_ya">Regístrame ya!</string>
+    <string name="login_text">Pantalla de inicio de sesion \\n Identifícate!</string>
 </resources>

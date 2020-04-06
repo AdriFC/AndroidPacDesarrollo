@@ -4,11 +4,13 @@
     <string name="logging_buttom">IDENTIFÍCATE!</string>
     <string name="register_buttom">REGÍSTRATE!</string>
     <string name="register_text">Pantalla de registro!</string>
+    <string name="login_text">Pantalla de inicio de sesion \n Identifícate!</string>
     <string name="register_toast">Hiciste click en registro!</string>
     <string name="name_user">Nombre</string>
     <string name="lastName_user">Apellido</string>
     <string name="user_name">Nombre usuario</string>
     <string name="password_user">Contraseña</string>
     <string name="email_user">Correo electrónico</string>
+    <string name="registrame_ya">Regístrame ya!</string>
 
 </resources>
