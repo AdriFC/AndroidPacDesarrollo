@@ -9,21 +9,43 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Atributos
+
     Button buttonRegister;  //Botón para acceder al activity de registro
+    Button buttonLogin;     //Botón para acceder al activity de login.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonRegister = findViewById(R.id.register_button);    //Asocia el objecto botón con el botón del layout
-        buttonRegister.setOnClickListener(new View.OnClickListener() {  //Asocio función register al listener del botón
+
+
+        buttonLogin = findViewById(R.id.logging_button);                   //Asocio el objecto botón de login con el botón del layout
+        buttonLogin.setOnClickListener(new View.OnClickListener() {        //Asocio la función register al listener del botón
+            @Override
+            public void onClick(View v) {
+                funcionLogin (v);
+            }
+        });
+
+        buttonRegister = findViewById(R.id.register_button);                //Asocio el objecto botón de registro con el botón del layout
+        buttonRegister.setOnClickListener(new View.OnClickListener() {      //Asocio la función register al listener del botón
             @Override
             public void onClick(View v) {
                 funcionRegister (v);
             }
         });
     }
-    public void funcionRegister (View v){   //Función que se ejecuta al pulsar el botón de registro
+
+    //Función que se ejecuta al pulsar el botón de Identifícate!
+    public void funcionLogin (View v){
+        Toast.makeText(this,getString(R.string.loging_toast),Toast.LENGTH_SHORT).show();
+        startActivity(new Intent (MainActivity.this, LoggingActivity.class));
+    }
+
+
+    //Función que se ejecuta al pulsar el botón de Regístrate!
+    public void funcionRegister (View v){
         Toast.makeText(this,getString(R.string.register_toast),Toast.LENGTH_SHORT).show();
         startActivity(new Intent (MainActivity.this, RegisterActivity.class));
     }

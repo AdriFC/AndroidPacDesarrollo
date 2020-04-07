@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 // Clase para la conexión con la bbdd SQLite
 
 public class BaseDeDatos extends SQLiteOpenHelper {
@@ -16,11 +20,18 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    //Método para crear, al extender de una clase abstracta es de obligada implementación por el usuario.
+    //Método para crear la bbdd, al extender de una clase abstracta es de obligada implementación por el usuario.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE usuarios (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre TEXT, " + "apellido TEXT, " + "nombreUsuario TEXT, " + "contraseña TEXT, " + "email TEXT);";
+        String createTable = "CREATE TABLE  usuarios (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "nombre TEXT," +
+                        "apellido TEXT, " +
+                        "nombreUsuario TEXT, " +
+                        "contraseña TEXT, " +
+                        "email TEXT);";
+
+        db.execSQL(createTable);
     }
 
     //Método para actualizar, al extender de una clase abstracta es de obligada implementación por el usuario.
@@ -32,7 +43,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     public void insertData (String nombre, String apellido, String nombreUsuario, String contraseña, String email){
         SQLiteDatabase escritura = getWritableDatabase();
         String insert = "INSERT INTO usuarios (nombre, apellido, nombreUsuario, contraseña, email) " +
-                "VALUES (\""+ nombre +" \" , \" "+ apellido + " \" , \" "+ nombreUsuario + " \" , \" "+ contraseña + " \" , \" "+ email + "\" );";
+                "VALUES (\""+ nombre +" \" , \""+ apellido + " \" , \""+ nombreUsuario + " \" , \""+ contraseña + " \" , \""+ email + "\" );";
         escritura.execSQL(insert);
         escritura.close();
     }
@@ -43,9 +54,15 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         String query = "SELECT * FROM usuarios";
         Cursor cursor = lectura.rawQuery (query, null);
         cursor.moveToFirst();
+        List<Usuario> usuarios = new ArrayList<>();
+
         do{
-            System.out.println("Nombre del usuario: " + cursor.getString(1));
+            usuarios.add(new Usuario(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
         } while (cursor.moveToNext());
+        Iterator iterator = usuarios.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().toString());
+        }
         lectura.close();
     }
 }
