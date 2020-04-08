@@ -11,7 +11,18 @@
     <string name="user_name">User name</string>
     <string name="password_user">Password</string>
     <string name="email_user">Email</string>
-    <string name="registrame_ya">Register me now!</string>
+    <string name="registrameYa_buttom">Register me now!</string>
     <string name="loging_toast">you clicked login!</string>
     <string name="login_text">Loggin screen!</string>
+    <string name="nombre_toast">You must enter a name!</string>
+    <string name="apellido_toast">You must enter a last name!</string>
+    <string name="userName_toast">You must enter a user name!</string>
+    <string name="contraseña_toast">You must enter a password!</string>
+    <string name="email_toast">you must enter an email address!</string>
+    <string name="accede_buttom">Access!</string>
+    <string name="music_text">Listen Adri FC - Evening beats (demo) dZb Records</string>
+    <string name="play_buttom">PLAY!</string>
+    <string name="stop_buttom">STOP</string>
+    <string name="inicioCorrecto_toast">" correct login!"</string>
+    <string name="datosIncorrectos_toast">Incorrect username or password!</string>
 </resources>

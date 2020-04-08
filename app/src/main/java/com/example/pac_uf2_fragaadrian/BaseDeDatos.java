@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -43,12 +44,17 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     public void insertData (String nombre, String apellido, String nombreUsuario, String contraseña, String email){
         SQLiteDatabase escritura = getWritableDatabase();
         String insert = "INSERT INTO usuarios (nombre, apellido, nombreUsuario, contraseña, email) " +
-                "VALUES (\""+ nombre +" \" , \""+ apellido + " \" , \""+ nombreUsuario + " \" , \""+ contraseña + " \" , \""+ email + "\" );";
+                "VALUES (\""+ nombre +"\" , \""+ apellido + "\" , \""+ nombreUsuario + "\" , \""+ contraseña + "\" , \""+ email + "\" );";
         escritura.execSQL(insert);
         escritura.close();
     }
 
-    //Función para recuperar datos de la BBDD
+
+    /*
+    Función para recuperar todos los datos de la BBDD, guardarlos en un arraylist e imprimirlos (Visto en clase, no aplica a este proyecto)
+    La uso para comprobar el funcionamiento de la bbdd
+     */
+
     public void getData (){
         SQLiteDatabase lectura = getReadableDatabase();
         String query = "SELECT * FROM usuarios";
@@ -64,5 +70,26 @@ public class BaseDeDatos extends SQLiteOpenHelper {
             System.out.println(iterator.next().toString());
         }
         lectura.close();
+    }
+
+
+    //Función para comprobar si un usuario está registrado en la bbdd (Consultado material didáctico y API de Android)
+    //Nos devuelve un true si el nombre de usuario y contraseña coinciden con un usuario registrado
+
+    public boolean checkUser (String nombreUsuario, String contraseña){
+
+        SQLiteDatabase lectura = getReadableDatabase();
+        String query = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND contraseña = ?";
+        String [] queryParameters = {nombreUsuario,contraseña};
+        Cursor cursor = lectura.rawQuery (query, queryParameters);
+        System.out.println(String.valueOf(cursor.getCount()));
+        if(cursor.getCount()>0){
+            lectura.close();
+            return true;
+        }else {
+            lectura.close();
+            return false;
+        }
+
     }
 }

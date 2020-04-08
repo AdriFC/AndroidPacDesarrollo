@@ -145,7 +145,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/buttom_rounded"
-        android:text="@string/registrame_ya"
+        android:text="@string/registrameYa_buttom"
         android:textColor="@color/negro"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"

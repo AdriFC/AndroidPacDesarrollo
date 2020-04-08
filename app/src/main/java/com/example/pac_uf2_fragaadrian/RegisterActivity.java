@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,6 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //Asociación de los objectos con su elemento en la interfaz
+
         texto_nombre = findViewById(R.id.texto_nombre);
         texto_apellido = findViewById(R.id.texto_apellido);
         texto_nombre_usuario = findViewById(R.id.texto_nombre_usuario);
@@ -33,18 +40,45 @@ public class RegisterActivity extends AppCompatActivity {
         registernow_button.setOnClickListener(new View.OnClickListener() {
 
             //Acciones que suceden al pulsar el botón Regístrame ya! Se llama a la función que registra un nuevo usuario en la bbdd y se pasa a la activity de login
+
             @Override
             public void onClick(View v) {
+
                 registerUser ();
-                startActivity(new Intent(RegisterActivity.this, LoggingActivity.class));
+
             }
         });
     }
 
     //Función para registrar un nuevo usuario en la BBDD SQLite de la app
+
     private void registerUser() {
-        BaseDeDatos bd = new BaseDeDatos(this, "appAndroid", null, 1);
-        bd.insertData(texto_nombre.getText().toString(), texto_apellido.getText().toString(), texto_nombre_usuario.getText().toString(), texto_contraseña.getText().toString(), texto_email.getText().toString());
-        bd.getData();
+
+        //Comprobación de que ningún campo queda vacío
+
+        if (texto_nombre.length()==0){
+            Toast.makeText(this,getString(R.string.nombre_toast),Toast.LENGTH_SHORT).show();
+        }
+        if (texto_apellido.length()==0){
+            Toast.makeText(this,getString(R.string.apellido_toast),Toast.LENGTH_SHORT).show();
+        }
+        if (texto_nombre_usuario.length()==0) {
+            Toast.makeText(this, getString(R.string.userName_toast), Toast.LENGTH_SHORT).show();
+        }
+        if (texto_contraseña.length()==0){
+            Toast.makeText(this,getString(R.string.contraseña_toast),Toast.LENGTH_SHORT).show();
+        }
+        if (texto_email.length()==0){
+            Toast.makeText(this,getString(R.string.email_toast),Toast.LENGTH_SHORT).show();
+        }
+
+        //Si todos los campos están cubiertos se realiza el registro en la bbdd y se cambia de activity
+
+        if(texto_nombre.length()>0 && texto_apellido.length()>0 && texto_nombre_usuario.length()>0 && texto_contraseña.length()>0 && texto_email.length()>0) {
+            BaseDeDatos bd = new BaseDeDatos(this, "appAndroid", null, 1);
+            bd.insertData(texto_nombre.getText().toString(), texto_apellido.getText().toString(), texto_nombre_usuario.getText().toString(), texto_contraseña.getText().toString(), texto_email.getText().toString());
+            // bd.getData();
+            startActivity(new Intent(RegisterActivity.this, LoggingActivity.class));
+        }
     }
 }
