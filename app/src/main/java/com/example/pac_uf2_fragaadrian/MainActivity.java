@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Función que se ejecuta al pulsar el botón de Identifícate!
+    //Función que se ejecuta al pulsar el botón de Identifícate! Visto en videotutoría
     public void funcionLogin (View v){
         Toast.makeText(this,getString(R.string.loging_toast),Toast.LENGTH_SHORT).show();
         startActivity(new Intent (MainActivity.this, LoggingActivity.class));
     }
 
 
-    //Función que se ejecuta al pulsar el botón de Regístrate!
+    //Función que se ejecuta al pulsar el botón de Regístrate! Visto en videotutoría
     public void funcionRegister (View v){
         Toast.makeText(this,getString(R.string.register_toast),Toast.LENGTH_SHORT).show();
         startActivity(new Intent (MainActivity.this, RegisterActivity.class));

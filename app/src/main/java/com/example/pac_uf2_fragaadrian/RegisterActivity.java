@@ -50,9 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    //Función para registrar un nuevo usuario en la BBDD SQLite de la app
+    //Función para registrar un nuevo usuario en la BBDD SQLite de la app visto en videotutoría
 
     private void registerUser() {
+
+        //Variable para comprobar que el campo email es un formato válido
+
+        boolean isValidEmail = validEmail(texto_email.getText().toString());
 
         //Comprobación de que ningún campo queda vacío
 
@@ -71,14 +75,28 @@ public class RegisterActivity extends AppCompatActivity {
         if (texto_email.length()==0){
             Toast.makeText(this,getString(R.string.email_toast),Toast.LENGTH_SHORT).show();
         }
+        if (!isValidEmail) {
+            Toast.makeText(this,getString(R.string.emailValido_toast),Toast.LENGTH_SHORT).show();
+        }
 
         //Si todos los campos están cubiertos se realiza el registro en la bbdd y se cambia de activity
 
-        if(texto_nombre.length()>0 && texto_apellido.length()>0 && texto_nombre_usuario.length()>0 && texto_contraseña.length()>0 && texto_email.length()>0) {
+        if(texto_nombre.length()>0 && texto_apellido.length()>0 && texto_nombre_usuario.length()>0 && texto_contraseña.length()>0 && texto_email.length()>0 && isValidEmail) {
             BaseDeDatos bd = new BaseDeDatos(this, "appAndroid", null, 1);
             bd.insertData(texto_nombre.getText().toString(), texto_apellido.getText().toString(), texto_nombre_usuario.getText().toString(), texto_contraseña.getText().toString(), texto_email.getText().toString());
             // bd.getData();
             startActivity(new Intent(RegisterActivity.this, LoggingActivity.class));
         }
     }
+
+    /*
+    Método para validar que se introduce un email correcto, información consultada en:
+    https://stackoverflow.com/questions/18909746/android-email-validation/18909955
+    */
+
+    private boolean validEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
+    }
+
 }
