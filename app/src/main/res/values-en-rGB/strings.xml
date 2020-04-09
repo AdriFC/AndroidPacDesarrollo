@@ -26,4 +26,5 @@
     <string name="inicioCorrecto_toast">" correct login!"</string>
     <string name="datosIncorrectos_toast">Incorrect username or password!</string>
     <string name="emailValido_toast">" Enter a valid email!"</string>
+    <string name="bienvenida_toast">"Welcome, "</string>
 </resources>

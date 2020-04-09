@@ -1,7 +1,11 @@
 package com.example.pac_uf2_fragaadrian;
 
-//Clase para la gestión de usuarios de la BBDD
-public class Usuario {
+import java.io.Serializable;
+
+// Clase para la gestión de usuarios de la BBDD
+// Implementa la clase serializable para poder enviarse con el putExtra entre Activities (visto en
+// https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android )
+public class Usuario implements Serializable {
     private int id;
     private String nombre;
     private String apellido;

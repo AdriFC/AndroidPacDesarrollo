@@ -40,15 +40,20 @@ public class LoggingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //Instancio la base de datos
                 BaseDeDatos bd = new BaseDeDatos(LoggingActivity.this, "appAndroid", null, 1);
                 //bd.getData();
-                if (bd.checkUser(texto_nombre_usuario.getText().toString(), texto_contraseña.getText().toString())){
+                //Pido que me devuelva los datos del usuario que se está loggeando, si existe (sino, devuelve un null)
+                Usuario usuario = bd.checkUser(texto_nombre_usuario.getText().toString(), texto_contraseña.getText().toString());
+                if (usuario != null){ //Si el usuario existe
                     Toast.makeText(LoggingActivity.this,getString(R.string.inicioCorrecto_toast),Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoggingActivity.this, LoggedActivity.class));
+                    Intent intent = new Intent(LoggingActivity.this, LoggedActivity.class);
+                    // Mando como extra el objeto usuario
+                    intent.putExtra("usuario", usuario);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(LoggingActivity.this,getString(R.string.datosIncorrectos_toast),Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }

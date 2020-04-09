@@ -76,20 +76,28 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     //Función para comprobar si un usuario está registrado en la bbdd (Consultado material didáctico y API de Android)
     //Nos devuelve un true si el nombre de usuario y contraseña coinciden con un usuario registrado
 
-    public boolean checkUser (String nombreUsuario, String contraseña){
+    public Usuario checkUser (String nombreUsuario, String contraseña) {
 
         SQLiteDatabase lectura = getReadableDatabase();
         String query = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND contraseña = ?";
-        String [] queryParameters = {nombreUsuario,contraseña};
-        Cursor cursor = lectura.rawQuery (query, queryParameters);
-        System.out.println(String.valueOf(cursor.getCount()));
-        if(cursor.getCount()>0){
-            lectura.close();
-            return true;
-        }else {
-            lectura.close();
-            return false;
+        String[] queryParameters = {nombreUsuario, contraseña};
+        Cursor cursor = lectura.rawQuery(query, queryParameters);
+
+        Usuario usuario = null;
+
+        //System.out.println(String.valueOf(cursor.getCount()));
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            usuario = new Usuario(  cursor.getInt(0),
+                                    cursor.getString(1),
+                                    cursor.getString(2),
+                                    cursor.getString(3),
+                                    cursor.getString(4),
+                                    cursor.getString(5) );
         }
+        //System.out.println(usuario.toString());
+        lectura.close();
+        return usuario;
 
     }
 }

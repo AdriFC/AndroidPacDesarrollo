@@ -26,4 +26,5 @@
     <string name="inicioCorrecto_toast">Inicio de sesion correcto!</string>
     <string name="datosIncorrectos_toast">Usuario o contraseña incorrectos!</string>
     <string name="emailValido_toast">Introduce un email válido!</string>
+    <string name="bienvenida_toast">"Bienvenido, "</string>
 </resources>

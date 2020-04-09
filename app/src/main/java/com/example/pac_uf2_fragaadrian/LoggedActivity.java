@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LoggedActivity extends AppCompatActivity {
 
@@ -19,6 +20,15 @@ public class LoggedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged);
+
+        //obtengo el extra "usuario" mediante el método getSerializableExtra
+        // https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
+        Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        if (usuario!=null) {
+            Toast.makeText(LoggedActivity.this,
+                    getString(R.string.bienvenida_toast) + usuario.getNombre() + " " + usuario.getApellido() + "!",
+                    Toast.LENGTH_SHORT).show();
+        }
 
         play_button = findViewById(R.id.play_buttom);                   //Asocio el objecto botón de play con el botón del layout
         play_button.setOnClickListener(new View.OnClickListener() {     //Asocio la función play al listener del botón
